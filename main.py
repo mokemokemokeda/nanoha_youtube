@@ -68,7 +68,7 @@ def upload_to_drive(local_file_path: str, file_name: str):
 
 
 if __name__ == "__main__":
-    CHANNEL_URL = "https://subscribercounter.com/fullscreen/UCryNrgY4lfJgYkhMNgwHPMg
+    CHANNEL_URL = "https://subscribercounter.com/fullscreen/UCryNrgY4lfJgYkhMNgwHPMg"
     OUTPUT_FILENAME = "nanoha_youtube.xlsx"
 
     count = scrape_subscriber_count(CHANNEL_URL)
