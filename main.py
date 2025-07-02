@@ -20,10 +20,22 @@ def scrape_subscriber_count(channel_url: str) -> int:
     count = int("".join(count_text))
     return count
 
+from datetime import datetime
+
 def save_to_excel(count: int, file_path: str):
-    df = pd.DataFrame(
-        [{"channel": "nanoha_youtube", "subscriber_count": count}]
-    )
+    new_data = {
+        "channel": "nanoha_youtube",
+        "subscriber_count": count,
+        "date": datetime.now().strftime("%Y/%m/%d")
+    }
+
+    # 既存ファイルがあるかチェックし、あれば読み込む
+    if os.path.exists(file_path):
+        df_existing = pd.read_excel(file_path)
+        df = pd.concat([df_existing, pd.DataFrame([new_data])], ignore_index=True)
+    else:
+        df = pd.DataFrame([new_data])
+
     df.to_excel(file_path, index=False)
 
 def get_drive_service():
